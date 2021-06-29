@@ -1,0 +1,147 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "this service serves as bootstrap for go services",
+    "title": "go-bootstrap-redis-api",
+    "version": "1.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/v1",
+  "paths": {
+    "/entities": {
+      "post": {
+        "description": "Create an Entity",
+        "summary": "Create Entity",
+        "operationId": "createEntity",
+        "parameters": [
+          {
+            "description": "entity creation params",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/createEntityRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/entityResponse"
+            }
+          }
+        }
+      }
+    },
+    "/entities/{uuid}": {
+      "get": {
+        "description": "Get an Entity by uuid",
+        "summary": "Get Entity by uuid",
+        "operationId": "getEntity",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "entity uuid",
+            "name": "uuid",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/entityResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "createEntityRequest": {
+      "type": "object",
+      "properties": {
+        "field_1": {
+          "type": "string",
+          "x-go-name": "Field1"
+        },
+        "field_2": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Field2"
+        },
+        "field_3": {
+          "type": "boolean",
+          "x-go-name": "Field3"
+        },
+        "field_4": {
+          "type": "string",
+          "x-go-name": "Field4"
+        }
+      },
+      "x-go-package": "github.com/profiralex/go-bootstrap-redis/pkg/server"
+    },
+    "entityResponse": {
+      "type": "object",
+      "properties": {
+        "field_1": {
+          "type": "string",
+          "x-go-name": "Field1"
+        },
+        "field_2": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Field2"
+        },
+        "field_3": {
+          "type": "boolean",
+          "x-go-name": "Field3"
+        },
+        "field_4": {
+          "type": "string",
+          "x-go-name": "Field4"
+        },
+        "uuid": {
+          "type": "string",
+          "x-go-name": "UUID"
+        }
+      },
+      "x-go-package": "github.com/profiralex/go-bootstrap-redis/pkg/server"
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "X-API-KEY",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "api_key": []
+    }
+  ],
+  "x-meta-array": [
+    "value1",
+    "value2"
+  ],
+  "x-meta-array-obj": [
+    {
+      "name": "obj",
+      "value": "field"
+    }
+  ],
+  "x-meta-value": "value"
+}
